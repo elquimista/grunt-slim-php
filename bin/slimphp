@@ -17,14 +17,14 @@ use clthck\SlimPHP\Filter\CSSFilter;
 function usage() {
   global $argv;
 
-  fwrite(STDERR, "Usage: $argv[0] [-tsi tabSizeIn] [-tso tabSizeOut] <inputFile> [outputFile]\n");
+  fwrite(STDERR, "Usage: $argv[0] [--tsi tabSizeIn] [--tso tabSizeOut] <inputFile> [outputFile]\n");
   exit(1);
 }
 
 function main($args) {
   array_shift($args);
 
-  $opts = getopt('tsi:tso');
+  $opts = getopt('', ['tsi:', 'tso:']);
 
   if (isset($opts['tsi'])) {
     $tabSizeIn = $opts['tsi'];
@@ -69,7 +69,7 @@ function main($args) {
 
   try {
     // Parse a template (both string & file containers)
-    $output = $slim->render($input);
+    $output = $slim->render($args[0]);
   } catch (Exception $e) {
     fwrite(STDERR, $e->getMessage() . "\n");
     exit(1);

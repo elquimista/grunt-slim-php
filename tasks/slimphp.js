@@ -52,7 +52,7 @@ module.exports = function(grunt) {
   });
 
   var compileSlim = function(item, cb) {
-    var args = [path.join(__dirname, '../bin/slimphp'), '-tsi', tabSizeInput, '-tso', tabSizeOutput, item ];
+    var args = [path.join(__dirname, '../bin/slimphp'), '--tsi', tabSizeInput, '--tso', tabSizeOutput, item ];
 
     var child = grunt.util.spawn({
       // cmd: path.join(__dirname, '../bin/slimphp'),
