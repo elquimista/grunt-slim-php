@@ -1,7 +1,7 @@
 {
   "name": "grunt-slim-php",
   "description": "Process Slim templates using slimphp, a PHP port of Ruby's Slim.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/clthck/grunt-slim-php",
   "author": {
     "name": "clthck",
@@ -25,7 +25,7 @@
     "node": ">= 0.8.0"
   },
   "scripts": {
-    "install": "composer install",
+    "install": "composer update",
     "test": "grunt test"
   },
   "devDependencies": {
