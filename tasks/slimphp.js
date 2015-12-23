@@ -13,7 +13,8 @@ module.exports = function(grunt) {
   var async = require('async');
   var path = require('path');
 
-  var slimTarget;
+  var tabSizeInput,
+      tabSizeOutput;
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -24,10 +25,12 @@ module.exports = function(grunt) {
     var options = this.options({
       writeError: true,
       separator: grunt.util.linefeed,
-      target: 'php'
+      tabSizeInput: 2,
+      tabSizeOutput: 4
     });
 
-    slimTarget = options.target;
+    tabSizeInput = options.tabSizeInput;
+    tabSizeOutput = options.tabSizeOutput;
 
     grunt.verbose.writeflags(options, 'Options');
 
@@ -49,7 +52,7 @@ module.exports = function(grunt) {
   });
 
   var compileSlim = function(item, cb) {
-    var args = [path.join(__dirname, '../bin/slimphp'), '-t', slimTarget || 'php', item ];
+    var args = [path.join(__dirname, '../bin/slimphp'), '-tsi', tabSizeInput, '-tso', tabSizeOutput, item ];
 
     var child = grunt.util.spawn({
       // cmd: path.join(__dirname, '../bin/slimphp'),
