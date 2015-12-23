@@ -17,26 +17,35 @@ use clthck\SlimPHP\Filter\CSSFilter;
 function usage() {
   global $argv;
 
-  fwrite(STDERR, "Usage: $argv[0] [-t target] <inputFile> [outputFile]\n");
+  fwrite(STDERR, "Usage: $argv[0] [-tsi tabSizeIn] [-tso tabSizeOut] <inputFile> [outputFile]\n");
   exit(1);
 }
 
 function main($args) {
   array_shift($args);
 
-  $opts = getopt('t');
+  $opts = getopt('tsi:tso');
 
-  if (isset($opts['t'])) {
-    $target = $opts['t'];
+  if (isset($opts['tsi'])) {
+    $tabSizeIn = $opts['tsi'];
     $args = array_slice($args, 2);
   } else {
-    $target = 'php';
+    $tabSizeIn = 2;
+  }
+
+  if (isset($opts['tso'])) {
+    $tabSizeOut = $opts['tso'];
+    $args = array_slice($args, 2);
+  } else {
+    $tabSizeOut = 4;
   }
 
   if (count($args) < 1 || count($args) > 2)
     usage();
 
-  $dumper = new PHPDumper();
+  $dumper = new PHPDumper([
+    'tabSize' => $tabSizeOut,
+  ]);
   $dumper->registerVisitor('tag', new AutotagsVisitor());
   $dumper->registerFilter('javascript', new JavaScriptFilter());
   $dumper->registerFilter('cdata', new CDATAFilter());
@@ -44,7 +53,9 @@ function main($args) {
   $dumper->registerFilter('style', new CSSFilter());
 
   // Initialize parser & SlimPHP
-  $parser = new Parser(new Lexer());
+  $parser = new Parser(new Lexer([
+    'tabSize' => $tabSizeIn,
+  ]));
   $slim   = new SlimPHP($parser, $dumper);
 
   // $parser->setAutotag('input:progress', 'input', array('type'=>'text', 'class'=>'progress-bar'));
