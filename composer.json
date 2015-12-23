@@ -1,7 +1,7 @@
 {
   "name": "clthck/grunt-slim-php",
   "description": "Process Slim templates using slimphp, a PHP port of Ruby's Slim.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/clthck/grunt-slim-php",
   "license": "MIT",
   "authors": [
@@ -15,7 +15,7 @@
     "source": "https://github.com/clthck/grunt-slim-php"
   },
   "require": {
-    "clthck/slimphp": "~0.0.0"
+    "clthck/slimphp": "0.0.3"
   },
   "bin": ["bin/slimphp"],
   "keywords": [

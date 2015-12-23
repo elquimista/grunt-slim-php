@@ -96,5 +96,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+* 12/23/2015 - v0.0.3 - Use slimphp v0.0.3
 * 12/23/2015 - v0.0.2 - Tab size options added.
 * 12/22/2015 - v0.0.1 - Initial release.
